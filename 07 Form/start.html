@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="IT">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Lezione HTML</title>
+	<style>
+		label {
+			display: block
+		}
+	</style>
+
+	<!--Disabilitare campo di pagamento se si seleziona piano FREE-->
+	<script>
+		function disableCheck(){
+			// console.log(document.getElementById("plan").value);
+			let free = (document.getElementById("plan").value==0)? true : false;
+			// console.log(free);
+			if (free) {
+				document.getElementById("checkout").disabled=true;
+				document.getElementById("pro").disabled=true;
+			} else {
+				document.getElementById("checkout").disabled=false;
+				document.getElementById("pro").disabled=false;
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1>Iscriviti!</h1>
+	</header>
+
+	<main>
+
+		<form action="#">
+
+			<fieldset>
+				<legend>I tuoi dati personali</legend>
+
+				<label for="mail">
+					Inserisci la tua email:
+				</label>
+				<input type="email" name="mail" id="mail" placeholder="La tua email" autofocus required>
+				<label for="pw">
+					Inserisci una password: 
+				</label>
+				<input type="password" name="pw" id="pw" required>
+				<label for="name">
+					Inserisci nome e cognome: 
+				</label>
+				<input type="text" name="name" id="name" placeholder="Nome Cognome" required>
+				<label for="birth">
+					Quando sei nato?
+				</label>
+				<input type="date" name="birth" id="birth" required>
+				<label for="cell">
+					Numero di telefono:
+				</label>
+				<input type="tel" name="cell" id="cell" required>
+			</fieldset><br>
+			
+			<fieldset>
+				<legend>Scegli il tuo piano</legend>
+				
+				<label for="plan">
+					<span>Il tuo piano di abbonamento: </span>
+					<select name="plan" id="plan" onchange="disableCheck()">
+						<option value="0">Free</option>
+						<optgroup label="Mensili">
+							<option value="1599">Student - €15,99</option>
+							<option value="2399">Professional - €23,99</option>
+							<option value="4999">Business - €49,99</option>
+						</optgroup>
+					</select>
+				</label>
+				<label for="pro">
+					<span>Vuoi i vantaggi del piano PRO?</span>
+					<input type="checkbox" name="pro" id="pro" disabled checked>
+				</label>
+			</fieldset><br>
+
+			<fieldset disabled id="checkout">
+				<legend>Procedi col pagamento</legend>
+
+				<label for="cardnum">
+					Numero Carta di Credito
+				</label>
+
+				<input type="text" name="cardnum" id="cardnum" minlength="16" maxlength="16" onkeypress="return event.key>=0 && event.key<=9" placeholder="0000000000000000" required>
+				<label for="cvc">
+					CVC
+				</label>
+
+				<input type="text" name="cvc" id="cvc" minlength="3" maxlength="3" onkeypress="return event.key>=0 && event.key<=9" placeholder="123" required>
+				<label for="expdate">
+					Data di scadenza
+				</label>
+				<input type="date" name="expdate" id="expdate" required>
+				<label for="address">
+					Indirizzo di fatturazione:
+				</label>
+				<input type="text" name="address" id="address" required>
+			</fieldset><br>
+			
+			<button type="submit">Iscriviti</button>
+
+		</form>
+		
+	</main>
+
+</body>
+
+</html>
